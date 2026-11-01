@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Coalition 64 to 53</title>
-<meta name="description" content="Why Netanyahu's coalition fell from 64 seats in 2022 to 53 in 2026: 2022's wasted votes, the Arab turnout surge, and four smaller losses to the opposition.">
-<meta property="og:title" content="How Netanyahu's coalition went from 64 seats to 53">
-<meta property="og:description" content="Why Netanyahu's coalition fell from 64 seats in 2022 to 53 in 2026: 2022's wasted votes, the Arab turnout surge, and four smaller losses to the opposition.">
+<title>Knesset Blocs 2022–2026</title>
+<meta name="description" content="What moved the Knesset seats from 2022 to 2026: coalition 64 to 53, opposition 46 to 48, Arab lists 10 to 19, step by step.">
+<meta property="og:title" content="What moved the Knesset seats, 2022 to 2026">
+<meta property="og:description" content="What moved the Knesset seats from 2022 to 2026: coalition 64 to 53, opposition 46 to 48, Arab lists 10 to 19, step by step.">
 <meta property="og:type" content="article">
 <style>
 *,*::before,*::after{box-sizing:border-box}
@@ -24,7 +24,7 @@ body{margin:0}
   --total:#7ea6dc; --opp:#e39a55; --arab:#a99be6; --loss:#e0705f; --gain:#5fbf93; --majority:#eeeeee; --tab:#242424; color-scheme:dark}
 body{background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   padding-block:28px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-main{max-width:900px;margin:0 auto;display:grid;gap:22px}
+main{max-width:900px;margin:0 auto;display:grid;gap:18px}
 main>*{min-width:0}
 header{border-bottom:2px solid var(--fg);padding-bottom:14px}
 h1{font-size:30px;line-height:1.15;margin:0 0 8px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
@@ -48,34 +48,30 @@ td.i b{padding-left:0}
 tr.grp td{padding-top:12px;font-size:12px;color:var(--fg-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-bottom:none}
 .method p{margin:0 0 9px;font-size:13.5px;color:var(--fg-2)}
 .method b{color:var(--fg)}
-.tabs{display:flex;gap:6px;margin:0 0 6px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:-6px}
+.tabtitle{font-size:22px;font-weight:800;margin:0;letter-spacing:-.01em;text-transform:none;color:var(--fg)}
+.key b.pos{color:var(--gain)}.key b.zero{color:var(--fg-3)}
 .tabs button{font:600 14px/1.2 inherit;font-family:inherit;color:var(--fg-2);background:var(--tab);border:0;border-radius:4px;padding:7px 14px;cursor:pointer}
 .tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
 td.n.sel{color:var(--fg)}td.n.dim{color:var(--fg-3);font-weight:500}
 th.n{text-align:right;padding-right:12px;font-size:12px;color:var(--fg-3);font-weight:600}
 footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);padding-top:10px}
-@media (max-width:700px){.cols{grid-template-columns:1fr}.key{padding-right:8px}.key + .key{padding-left:10px}.key b{font-size:24px}.key span{font-size:13.5px;line-height:1.3}.key small{display:none}}
+@media (max-width:700px){.tabs button{flex:1}.cols{grid-template-columns:1fr}.key{padding-right:8px}.key + .key{padding-left:10px}.key b{font-size:24px}.key span{font-size:13.5px;line-height:1.3}.key small{display:none}}
 @page{size:A4 portrait;margin:12mm}
 </style>
 </head>
 <body>
 <main>
 <header>
-  <h1>How Netanyahu's coalition went from 64 seats to 53</h1>
-  <p class="dek">7 of the 11 lost seats came from changes outside the coalition.</p>
+  <h1>What moved the Knesset seats, 2022 to 2026</h1>
+  <p class="dek">Seat changes by bloc, step by step.</p>
   <p class="meta">Knesset elections, 1 Nov 2022 and 27 Oct 2026 · Final count as of 30 Oct 2026</p>
 </header>
 
-<section class="keys" aria-label="Summary">
-  <div class="key"><b>−4</b><span>2022's wasted votes count</span><small>Meretz and Balad fell just below the threshold in 2022</small></div>
-  <div class="key"><b>−3</b><span>Arab turnout surge</span><small>From 52% to 78%; Arab lists from 13 to 19 seats</small></div>
-  <div class="key"><b>−4</b><span>Lost to the opposition</span><small>Turnout, voters switching sides, and votes wasted below the threshold</small></div>
-</section>
-
-<section aria-label="Seat waterfall">
-  <div class="tabs" role="tablist" aria-label="Bloc" id="tabs"></div>
-  <div id="wf"></div>
-</section>
+<div class="tabs" role="tablist" aria-label="Bloc" id="tabs"></div>
+<h2 class="tabtitle" id="tabtitle"></h2>
+<section class="keys" aria-label="Summary" id="keys"></section>
+<section aria-label="Seat waterfall"><div id="wf"></div></section>
 
 <section class="cols">
   <div>
@@ -109,9 +105,19 @@ const STEPS = [
    text:"About 51,000 more voters moved from the coalition to the opposition than the other way."},
   {label:["2026","result"], total:{c:53, o:48, a:19}}
 ];
-const BLOCS = {c:{name:"Coalition", color:"--total", group:"Lost to the opposition: −4"},
-               o:{name:"Opposition", color:"--opp", group:"Won from the coalition: +4"},
-               a:{name:"Arab lists", color:"--arab", group:"Coalition vs. opposition: 0"}};
+const BLOCS = {
+  c:{name:"Coalition", color:"--total", group:"Lost to the opposition: −4", title:"Coalition: 64 → 53",
+     keys:[[-4, "2022's wasted votes count", "Meretz and Balad fell just below the threshold in 2022"],
+           [-3, "Arab turnout surge", "Arab turnout rose from 52% to 78%"],
+           [-4, "Lost to the opposition", "Turnout gap, voters switching, votes wasted below the threshold"]]},
+  o:{name:"Opposition", color:"--opp", group:"Won from the coalition: +4", title:"Opposition: 46 → 48",
+     keys:[[1, "Meretz votes count", "Meretz fell just below the threshold in 2022"],
+           [-3, "Arab turnout surge", "Arab turnout rose from 52% to 78%"],
+           [4, "Won from the coalition", "Turnout gap, voters switching, votes wasted below the threshold"]]},
+  a:{name:"Arab lists", color:"--arab", group:"Coalition vs. opposition: 0", title:"Arab lists: 10 → 19",
+     keys:[[3, "Balad votes count", "Balad fell just below the threshold in 2022"],
+           [6, "Arab turnout surge", "Arab turnout rose from 52% to 78%"],
+           [0, "Coalition vs. opposition", "No effect on the Arab lists"]]}};
 const HASH = {c:"coalition", o:"opposition", a:"arab-lists"};
 let bloc = "c";
 try { const h = location.hash.slice(1); for (const k in HASH) if (HASH[k] === h) bloc = k; } catch (e) {}
@@ -120,30 +126,30 @@ const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v);
 function draw(){
   // one row per step on a fixed 0-70 seat axis shared by all tabs, so the grid never moves when switching
   const host = document.getElementById("wf"), W = Math.max(host.clientWidth, 300), b = BLOCS[bloc];
-  const narrow = W < 560, labelW = narrow ? 128 : 210, right = narrow ? 30 : 44, top = 26, rowH = narrow ? 42 : 40, lo = 0, hi = 70;
-  const H = top + (STEPS.length + 1) * rowH + 8;
+  const narrow = W < 560, labelW = narrow ? 0 : 210, right = narrow ? 34 : 44, top = 26, rowH = narrow ? 48 : 40, lo = 0, hi = 70;
+  const H = top + (STEPS.length + 1) * rowH + 26, gridEnd = H - 20;          // room under the rows for the majority label
   const x = v => labelW + (v - lo) / (hi - lo) * (W - labelW - right);
   const fg = css("--fg"), fg2 = css("--fg-2"), fg3 = css("--fg-3"), line = css("--line");
   const fs = narrow ? 12 : 13;
   let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="${b.name} seats, 2022 to 2026">`;
   for (let v = lo; v <= hi; v += 10){
-    s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 4}" y2="${H - 6}" stroke="${line}"/>`;
-    if (!narrow || v % 20 === 0) s += `<text x="${x(v)}" y="${top - 10}" text-anchor="middle" font-size="11.5" fill="${fg3}">${v}</text>`;
+    s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 4}" y2="${gridEnd}" stroke="${line}"/>`;
+    if (!narrow || v % 20 === 0) s += `<text x="${x(v)}" y="${top - 10}" text-anchor="${v === lo ? "start" : "middle"}" font-size="11.5" fill="${fg3}">${v}</text>`;
   }
-  s += `<line x1="${x(61)}" x2="${x(61)}" y1="${top - 4}" y2="${H - 6}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
-  s += `<text x="${x(61) - 4}" y="${H - 10}" text-anchor="end" font-size="11.5" fill="${fg2}">61 = majority</text>`;
+  s += `<line x1="${x(61)}" x2="${x(61)}" y1="${top - 4}" y2="${gridEnd}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
+  s += `<text x="${x(61)}" y="${H - 4}" text-anchor="middle" font-size="11.5" fill="${fg2}">61 = majority</text>`;
   let level = STEPS[0].total[bloc], r = 0, bar = 15;
   const rowY = i => top + i * rowH;
   STEPS.forEach((st, i) => {
     if (st.sub && !STEPS[i - 1].sub){                                            // header row for the three internal effects
-      s += `<text x="0" y="${rowY(r) + rowH / 2 + 4}" font-size="${fs - 1}" font-weight="700" fill="${fg3}" letter-spacing=".03em">${b.group.toUpperCase()}</text>`;
-      s += `<line x1="${x(level)}" x2="${x(level)}" y1="${rowY(r)}" y2="${rowY(r + 1)}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
+      s += `<text x="0" y="${rowY(r) + (narrow ? 30 : rowH / 2 + 4)}" font-size="${fs - 1}" font-weight="700" fill="${fg3}" letter-spacing=".03em">${b.group.toUpperCase()}</text>`;
+      s += `<line x1="${x(level)}" x2="${x(level)}" y1="${rowY(r)}" y2="${rowY(r + 1) + (narrow ? 32 : rowH / 2) - bar / 2}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
       r++;
     }
-    const cy = rowY(r) + rowH / 2, lx = st.sub ? 10 : 0;
-    const lines = narrow ? st.label : [st.label.join(" ")];
-    s += `<text x="${lx}" y="${cy - (lines.length - 1) * 7}" dominant-baseline="middle" font-size="${fs}" fill="${st.total ? fg : fg2}" font-weight="${st.total ? 700 : 400}">` +
-         lines.map((t, j) => `<tspan x="${lx}" dy="${j ? 14 : 0}">${t}</tspan>`).join("") + `</text>`;
+    // phones: the label sits above its bar so the bars get the full width
+    const cy = narrow ? rowY(r) + 32 : rowY(r) + rowH / 2, lx = st.sub ? (narrow ? 0 : 10) : 0;
+    const ly = narrow ? rowY(r) + 12 : cy;
+    s += `<text x="${lx}" y="${ly}" dominant-baseline="middle" font-size="${fs}" fill="${st.total ? fg : fg2}" font-weight="${st.total ? 700 : 400}">${st.label.join(" ")}</text>`;
     if (st.total){
       const v = st.total[bloc];
       s += `<rect x="${x(lo)}" y="${cy - bar / 2}" width="${x(v) - x(lo)}" height="${bar}" fill="${css(b.color)}"/>`;
@@ -180,7 +186,13 @@ function rows(){
   });
   document.getElementById("rows").innerHTML = html;
 }
-function render(){ tabs(); draw(); rows(); }
+function head(){
+  const b = BLOCS[bloc];
+  document.getElementById("tabtitle").textContent = b.title;
+  document.getElementById("keys").innerHTML = b.keys.map(([v, t, sm]) =>
+    `<div class="key"><b class="${v > 0 ? "pos" : v === 0 ? "zero" : ""}">${fmt(v) || "0"}</b><span>${t}</span><small>${sm}</small></div>`).join("");
+}
+function render(){ tabs(); head(); draw(); rows(); }
 render();
 addEventListener("hashchange", () => { const h = location.hash.slice(1); for (const k in HASH) if (HASH[k] === h && k !== bloc){ bloc = k; render(); } });
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(draw, 120); });
