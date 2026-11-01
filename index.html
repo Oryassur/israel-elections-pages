@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Coalition 64 to 53</title>
+<meta name="description" content="Why Netanyahu's coalition fell from 64 seats in 2022 to 53 in 2026: 2022's wasted votes, the Arab turnout surge, and four smaller losses to the opposition.">
+<meta property="og:title" content="How Netanyahu's coalition went from 64 seats to 53">
+<meta property="og:description" content="Why Netanyahu's coalition fell from 64 seats in 2022 to 53 in 2026: 2022's wasted votes, the Arab turnout surge, and four smaller losses to the opposition.">
+<meta property="og:type" content="article">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+
+:root{
+  --bg:#ffffff; --fg:#111111; --fg-2:#4f4f4f; --fg-3:#8a8a8a; --line:#e2e2e2;
+  --total:#24416b; --loss:#c4402f; --majority:#111111;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141414; --fg:#eeeeee; --fg-2:#bdbdbd; --fg-3:#7d7d7d; --line:#2e2e2e;
+  --total:#7ea6dc; --loss:#e0705f; --majority:#eeeeee; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141414; --fg:#eeeeee; --fg-2:#bdbdbd; --fg-3:#7d7d7d; --line:#2e2e2e;
+  --total:#7ea6dc; --loss:#e0705f; --majority:#eeeeee; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  padding-block:28px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:900px;margin:0 auto;display:grid;gap:22px}
+main>*{min-width:0}
+header{border-bottom:2px solid var(--fg);padding-bottom:14px}
+h1{font-size:30px;line-height:1.15;margin:0 0 8px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.dek{font-size:17px;color:var(--fg-2);margin:0;max-width:62ch}
+.meta{font-size:13px;color:var(--fg-3);margin:10px 0 0}
+.keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.key{padding:2px 16px 14px 0}
+.key + .key{border-left:1px solid var(--line);padding-left:16px}
+.key b{display:block;font-size:30px;font-weight:800;color:var(--loss);font-variant-numeric:tabular-nums;line-height:1.2}
+.key span{display:block;font-weight:600}
+.key small{display:block;color:var(--fg-2);font-size:13.5px}
+.scroll{overflow-x:auto}
+svg{display:block;width:100%;min-width:660px;height:auto}
+.cols{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:28px;border-top:1px solid var(--line);padding-top:16px}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 8px;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:14px}
+td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--loss);width:3.2em;padding-right:12px}
+td b{display:block}
+td.i b{padding-left:0}
+tr.grp td{padding-top:12px;font-size:12px;color:var(--fg-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-bottom:none}
+.method p{margin:0 0 9px;font-size:13.5px;color:var(--fg-2)}
+.method b{color:var(--fg)}
+footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);padding-top:10px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}.key{padding-right:8px}.key + .key{padding-left:10px}.key b{font-size:24px}.key span{font-size:13.5px;line-height:1.3}.key small{display:none}}
+@page{size:A4 portrait;margin:12mm}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>How Netanyahu's coalition went from 64 seats to 53</h1>
+  <p class="dek">Most of the drop is not voters abandoning the coalition. Seven of the eleven seats come from changes on the other side: wasted 2022 votes that counted this time, and a surge in Arab turnout.</p>
+  <p class="meta">Knesset elections, 1 Nov 2022 and 27 Oct 2026 · Final count as of 30 Oct 2026</p>
+</header>
+
+<section class="keys" aria-label="Summary">
+  <div class="key"><b>−4</b><span>2022's wasted votes count</span><small>Meretz and Balad fell just below the threshold in 2022</small></div>
+  <div class="key"><b>−3</b><span>Arab turnout surge</span><small>From 52% to 78%; Arab lists from 13 to 19 seats</small></div>
+  <div class="key"><b>−4</b><span>Lost to the opposition</span><small>Turnout, voters switching sides, and votes wasted below the threshold</small></div>
+</section>
+
+<section class="scroll" aria-label="Seat waterfall"><div id="wf"></div></section>
+
+<section class="cols">
+  <div>
+    <h2>Step by step</h2>
+    <table><tbody id="rows"></tbody></table>
+  </div>
+  <div class="method">
+    <h2>How it was calculated</h2>
+    <p><b>Coalition</b> means Likud, Religious Zionism, Shas, UTJ and Otzma Yehudit. Jewish Home and Economic Freedom (2022) are not counted.</p>
+    <p><b>The first two steps are exact recounts.</b> The 2022 votes are counted as if Meretz and Balad had passed the threshold, which gives the coalition 60. The 2026 votes are counted with Arab turnout at its 2022 rate, which gives it 56 instead of 53.</p>
+    <p><b>The last four are estimates.</b> Ballots are secret, so voter movements are estimated by comparing about 4,000 polling places that exist in both elections and finding the movements that best explain the local changes. First-time voters are estimated from population data. The four effects are scaled to add up to the 4 seats.</p>
+    <p><b>Uncertainty.</b> Under different assumptions the estimates range: wasted votes −0.4 to −1.2, turnout −1.7 to −2.2, first-time voters 0 to −0.5, switching −0.6 to −1.5.</p>
+  </div>
+</section>
+
+<footer>Source: Central Elections Committee, results by polling place (2022, 2026). Seats allocated with the 3.25% threshold and the surplus-vote agreements. The 2026 results are formally published by 4 Nov 2026 and may still change slightly.</footer>
+</main>
+<script>
+const STEPS = [
+  {label:["2022","result"], total:64},
+  {label:["Meretz & Balad","votes counted"], d:-4, row:"Meretz & Balad votes counted",
+   text:"Both fell just below the threshold in 2022 (150,793 and 138,617 votes). Counting them leaves the coalition with 60."},
+  {label:["Arab turnout","52% → 78%"], d:-3, row:"Arab turnout surge",
+   text:"Arab lists rose from 13 to 19 seats. The coalition and the opposition each gave up 3."},
+  {label:["Votes lost below","the threshold"], d:-0.6, sub:true, row:"Votes lost below the threshold",
+   text:"About 80,000 2022 coalition voters chose lists that missed the threshold (Amcha, Noam, the Reservists and others), against about 46,000 opposition voters."},
+  {label:["Turnout of","returning voters"], d:-1.7, sub:true, row:"Turnout of returning voters",
+   text:"Voters who came back after skipping 2022 leaned to the opposition; those who stayed home this time leaned to the coalition."},
+  {label:["First-time","voters"], d:-0.2, sub:true, row:"First-time voters",
+   text:"About 640,000 young people came of age. They split about 55/45, close to the 2022 balance, so they barely moved the result."},
+  {label:["Voters switching","to the opposition"], d:-1.5, sub:true, row:"Voters switching to the opposition",
+   text:"About 51,000 more voters moved from the coalition to the opposition than the other way."},
+  {label:["2026","result"], total:53}
+];
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function draw(){
+  const W = 900, H = 390, left = 30, right = 8, top = 20, bottom = 82, lo = 50, hi = 66;
+  const n = STEPS.length, slot = (W - left - right) / n, bw = slot * 0.54;
+  const y = v => top + (hi - v) / (hi - lo) * (H - top - bottom);
+  const fg = css("--fg"), fg2 = css("--fg-2"), fg3 = css("--fg-3"), line = css("--line"), tot = css("--total"), loss = css("--loss");
+  let s = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Coalition seats fall from 64 in 2022 to 53 in 2026">`;
+  for (let v = lo; v <= hi; v += 2){
+    s += `<line x1="${left}" x2="${W - right}" y1="${y(v)}" y2="${y(v)}" stroke="${line}"/>`;
+    s += `<text x="${left - 7}" y="${y(v)}" text-anchor="end" dominant-baseline="middle" font-size="12" fill="${fg3}">${v}</text>`;
+  }
+  s += `<line x1="${left}" x2="${W - right}" y1="${y(61)}" y2="${y(61)}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
+  s += `<text x="${W - right}" y="${y(61) - 6}" text-anchor="end" font-size="12" fill="${fg2}">61 = majority</text>`;
+  const subs = STEPS.map((st, i) => st.sub ? i : -1).filter(i => i >= 0);
+  const bx0 = left + subs[0] * slot + 6, bx1 = left + (subs[subs.length - 1] + 1) * slot - 6, by = H - 22;
+  s += `<path d="M${bx0},${by - 6} V${by} H${bx1} V${by - 6}" fill="none" stroke="${fg3}"/>`;
+  s += `<text x="${(bx0 + bx1) / 2}" y="${by + 16}" text-anchor="middle" font-size="12.5" font-weight="600" fill="${fg2}">Lost to the opposition: −4</text>`;
+  let level = 64;
+  STEPS.forEach((st, i) => {
+    const cx = left + i * slot + slot / 2, x0 = cx - bw / 2;
+    if (st.total != null){
+      s += `<rect x="${x0}" y="${y(st.total)}" width="${bw}" height="${y(lo) - y(st.total)}" fill="${tot}"/>`;
+      s += `<text x="${cx}" y="${y(st.total) - 7}" text-anchor="middle" font-size="16" font-weight="800" fill="${fg}">${st.total}</text>`;
+      level = st.total;
+    } else {
+      const to = Math.round((level + st.d) * 10) / 10;
+      s += `<rect x="${x0}" y="${y(level)}" width="${bw}" height="${Math.max(y(to) - y(level), 1.5)}" fill="${loss}"/>`;
+      s += `<text x="${cx}" y="${y(to) + 15}" text-anchor="middle" font-size="13" font-weight="700" fill="${fg}">${st.d < 0 ? "−" : "+"}${Math.abs(st.d)}</text>`;
+      if (!st.sub) s += `<text x="${cx + bw / 2 + 4}" y="${y(to)}" dominant-baseline="middle" font-size="11" fill="${fg3}">${to}</text>`;
+      level = to;
+    }
+    if (i < n - 1) s += `<line x1="${cx + bw / 2}" x2="${cx + slot - bw / 2}" y1="${y(level)}" y2="${y(level)}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
+    s += `<text x="${cx}" y="${y(lo) + 17}" text-anchor="middle" font-size="12" fill="${st.total != null ? fg : fg2}" font-weight="${st.total != null ? 700 : 400}">` +
+         st.label.map((t, j) => `<tspan x="${cx}" dy="${j ? 14 : 0}">${t}</tspan>`).join("") + `</text>`;
+  });
+  s += `</svg>`;
+  document.getElementById("wf").innerHTML = s;
+}
+function rows(){
+  let html = "", inGroup = false;
+  STEPS.filter(st => st.d != null).forEach(st => {
+    if (st.sub && !inGroup){ html += `<tr class="grp"><td colspan="2">Lost to the opposition (−4)</td></tr>`; inGroup = true; }
+    html += `<tr><td class="n">${st.d < 0 ? "−" : "+"}${Math.abs(st.d)}</td><td><b>${st.row}</b>${st.text}</td></tr>`;
+  });
+  document.getElementById("rows").innerHTML = html;
+}
+draw(); rows();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+new MutationObserver(draw).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+</script>
+</body>
+</html>
