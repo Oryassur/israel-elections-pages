@@ -14,14 +14,14 @@ body{margin:0}
 
 :root{
   --bg:#ffffff; --fg:#111111; --fg-2:#4f4f4f; --fg-3:#8a8a8a; --line:#e2e2e2;
-  --total:#24416b; --loss:#c4402f; --majority:#111111;
+  --total:#24416b; --opp:#b8621b; --arab:#5d4fa3; --loss:#c4402f; --gain:#2f7d5b; --majority:#111111; --tab:#f0f0f0;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#141414; --fg:#eeeeee; --fg-2:#bdbdbd; --fg-3:#7d7d7d; --line:#2e2e2e;
-  --total:#7ea6dc; --loss:#e0705f; --majority:#eeeeee; color-scheme:dark}}
+  --total:#7ea6dc; --opp:#e39a55; --arab:#a99be6; --loss:#e0705f; --gain:#5fbf93; --majority:#eeeeee; --tab:#242424; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#141414; --fg:#eeeeee; --fg-2:#bdbdbd; --fg-3:#7d7d7d; --line:#2e2e2e;
-  --total:#7ea6dc; --loss:#e0705f; --majority:#eeeeee; color-scheme:dark}
+  --total:#7ea6dc; --opp:#e39a55; --arab:#a99be6; --loss:#e0705f; --gain:#5fbf93; --majority:#eeeeee; --tab:#242424; color-scheme:dark}
 body{background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   padding-block:28px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 main{max-width:900px;margin:0 auto;display:grid;gap:22px}
@@ -42,12 +42,17 @@ h1{font-size:30px;line-height:1.15;margin:0 0 8px;font-weight:800;letter-spacing
 h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 8px;font-weight:700}
 table{border-collapse:collapse;width:100%;font-size:14px}
 td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
-td.n{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--loss);width:3.2em;padding-right:12px}
+td.n{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;width:3em;padding-right:10px}
 td b{display:block}
 td.i b{padding-left:0}
 tr.grp td{padding-top:12px;font-size:12px;color:var(--fg-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-bottom:none}
 .method p{margin:0 0 9px;font-size:13.5px;color:var(--fg-2)}
 .method b{color:var(--fg)}
+.tabs{display:flex;gap:6px;margin:0 0 6px;flex-wrap:wrap}
+.tabs button{font:600 14px/1.2 inherit;font-family:inherit;color:var(--fg-2);background:var(--tab);border:0;border-radius:4px;padding:7px 14px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+td.n.sel{color:var(--fg)}td.n.dim{color:var(--fg-3);font-weight:500}
+th.n{text-align:right;padding-right:12px;font-size:12px;color:var(--fg-3);font-weight:600}
 footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);padding-top:10px}
 @media (max-width:700px){.cols{grid-template-columns:1fr}.key{padding-right:8px}.key + .key{padding-left:10px}.key b{font-size:24px}.key span{font-size:13.5px;line-height:1.3}.key small{display:none}}
 @page{size:A4 portrait;margin:12mm}
@@ -67,18 +72,21 @@ footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);paddi
   <div class="key"><b>−4</b><span>Lost to the opposition</span><small>Turnout, voters switching sides, and votes wasted below the threshold</small></div>
 </section>
 
-<section aria-label="Seat waterfall"><div id="wf"></div></section>
+<section aria-label="Seat waterfall">
+  <div class="tabs" role="tablist" aria-label="Bloc" id="tabs"></div>
+  <div id="wf"></div>
+</section>
 
 <section class="cols">
   <div>
     <h2>Step by step</h2>
-    <table><tbody id="rows"></tbody></table>
+    <table><thead><tr><th class="n">Coal.</th><th class="n">Opp.</th><th class="n">Arab</th><th></th></tr></thead><tbody id="rows"></tbody></table>
   </div>
   <div class="method">
     <h2>How it was calculated</h2>
-    <p><b>Coalition</b> means Likud, Religious Zionism, Shas, UTJ and Otzma Yehudit. Jewish Home and Economic Freedom (2022) are not counted.</p>
+    <p><b>Blocs.</b> Coalition: Likud, Religious Zionism, Shas, UTJ, Otzma Yehudit (Jewish Home and Economic Freedom in 2022 are not counted). Opposition: Yesh Atid, National Unity, Yisrael Beiteinu, Labor and Meretz in 2022; Yashar, Beyachad, the Democrats and Yisrael Beiteinu in 2026. Arab lists: Ra'am, Hadash-Ta'al, Balad, the Joint List.</p>
     <p><b>The first two steps are exact recounts.</b> The 2022 votes are counted with Meretz inside Labor and Balad inside Hadash-Ta'al, as they ran in 2026, which gives the coalition 60. The 2026 votes are counted with Arab turnout at its 2022 rate, which gives it 56 instead of 53.</p>
-    <p><b>The last three are estimates.</b> Ballots are secret, so voter movements are estimated by comparing about 4,000 polling places that exist in both elections and finding the movements that best explain the local changes. First-time voters are estimated from population data. The three effects are scaled to add up to the 4 seats.</p>
+    <p><b>The last three are estimates.</b> Ballots are secret, so voter movements are estimated by comparing about 4,000 polling places that exist in both elections and finding the movements that best explain the local changes. First-time voters are estimated from population data. The three effects are scaled to add up to the 4 seats. In whole seats these 4 move from the coalition to the opposition, so the opposition's bars mirror the coalition's and the Arab lists' are zero.</p>
     <p><b>Uncertainty.</b> Under different assumptions the estimates range: wasted votes −0.4 to −1.2, turnout gap −1.9 to −2.3, switching −0.6 to −1.5.</p>
   </div>
 </section>
@@ -86,74 +94,95 @@ footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);paddi
 <footer>Source: Central Elections Committee, results by polling place (2022, 2026). Seats allocated with the 3.25% threshold and the surplus-vote agreements. The 2026 results are formally published by 4 Nov 2026 and may still change slightly.</footer>
 </main>
 <script>
+// seats per bloc at each step: c = coalition, o = opposition, a = Arab lists
 const STEPS = [
-  {label:["2022","result"], total:64},
-  {label:["Meretz & Balad","votes counted"], d:-4, row:"Meretz & Balad votes counted",
-   text:"Both fell just below the threshold in 2022 (150,793 and 138,617 votes). Counted inside the lists they joined in 2026, they leave the coalition with 60."},
-  {label:["Arab turnout","52% → 78%"], d:-3, row:"Arab turnout surge",
+  {label:["2022","result"], total:{c:64, o:46, a:10}},
+  {label:["Meretz & Balad","votes counted"], d:{c:-4, o:1, a:3}, row:"Meretz & Balad votes counted",
+   text:"Both fell just below the threshold in 2022 (150,793 and 138,617 votes). Counted inside the lists they joined in 2026, the blocs would have been 60, 47 and 13."},
+  {label:["Arab turnout","52% → 78%"], d:{c:-3, o:-3, a:6}, row:"Arab turnout surge",
    text:"Arab lists rose from 13 to 19 seats. The coalition and the opposition each gave up 3."},
-  {label:["Votes lost below","the threshold"], d:-0.6, sub:true, row:"Votes lost below the threshold",
+  {label:["Votes lost below","the threshold"], d:{c:-0.6, o:0.6, a:0}, sub:true, row:"Votes lost below the threshold",
    text:"About 80,000 2022 coalition voters chose lists that missed the threshold (Amcha, Noam, the Reservists and others), against about 46,000 opposition voters."},
-  {label:["Turnout gap: coalition","& opposition voters"], d:-1.9, sub:true, row:"Turnout gap: coalition and opposition voters",
+  {label:["Turnout gap: coalition","& opposition voters"], d:{c:-1.9, o:1.9, a:0}, sub:true, row:"Turnout gap: coalition and opposition voters",
    text:"Voters who came back after skipping 2022 leaned to the opposition, and those who stayed home leaned to the coalition. First-time voters (about 640,000) split close to the 2022 balance and added little."},
-  {label:["Voters switching from","coalition to opposition"], d:-1.5, sub:true, row:"Voters switching from coalition to opposition",
+  {label:["Voters switching from","coalition to opposition"], d:{c:-1.5, o:1.5, a:0}, sub:true, row:"Voters switching from coalition to opposition",
    text:"About 51,000 more voters moved from the coalition to the opposition than the other way."},
-  {label:["2026","result"], total:53}
+  {label:["2026","result"], total:{c:53, o:48, a:19}}
 ];
+const BLOCS = {c:{name:"Coalition", color:"--total", group:"Lost to the opposition: −4"},
+               o:{name:"Opposition", color:"--opp", group:"Won from the coalition: +4"},
+               a:{name:"Arab lists", color:"--arab", group:"Coalition vs. opposition: 0"}};
+const HASH = {c:"coalition", o:"opposition", a:"arab-lists"};
+let bloc = "c";
+try { const h = location.hash.slice(1); for (const k in HASH) if (HASH[k] === h) bloc = k; } catch (e) {}
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v);
 function draw(){
-  // one row per step, bars run horizontally on a 50-66 seat axis, sized to the page width (no sideways scrolling)
-  const host = document.getElementById("wf"), W = Math.max(host.clientWidth, 300);
-  const narrow = W < 560, labelW = narrow ? 128 : 210, right = narrow ? 30 : 44, top = 26, rowH = narrow ? 42 : 40, lo = 50, hi = 66;
-  const rowsN = STEPS.length + 1, H = top + rowsN * rowH + 8;                 // +1 for the "lost to the opposition" header row
+  // one row per step on a fixed 0-70 seat axis shared by all tabs, so the grid never moves when switching
+  const host = document.getElementById("wf"), W = Math.max(host.clientWidth, 300), b = BLOCS[bloc];
+  const narrow = W < 560, labelW = narrow ? 128 : 210, right = narrow ? 30 : 44, top = 26, rowH = narrow ? 42 : 40, lo = 0, hi = 70;
+  const H = top + (STEPS.length + 1) * rowH + 8;
   const x = v => labelW + (v - lo) / (hi - lo) * (W - labelW - right);
-  const fg = css("--fg"), fg2 = css("--fg-2"), fg3 = css("--fg-3"), line = css("--line"), tot = css("--total"), loss = css("--loss");
+  const fg = css("--fg"), fg2 = css("--fg-2"), fg3 = css("--fg-3"), line = css("--line");
   const fs = narrow ? 12 : 13;
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="Coalition seats fall from 64 in 2022 to 53 in 2026">`;
-  for (let v = lo; v <= hi; v += narrow ? 4 : 2){
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="${b.name} seats, 2022 to 2026">`;
+  for (let v = lo; v <= hi; v += 10){
     s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 4}" y2="${H - 6}" stroke="${line}"/>`;
-    s += `<text x="${x(v)}" y="${top - 10}" text-anchor="middle" font-size="11.5" fill="${fg3}">${v}</text>`;
+    if (!narrow || v % 20 === 0) s += `<text x="${x(v)}" y="${top - 10}" text-anchor="middle" font-size="11.5" fill="${fg3}">${v}</text>`;
   }
-  let level = 64, r = 0, bar = 15;
+  s += `<line x1="${x(61)}" x2="${x(61)}" y1="${top - 4}" y2="${H - 6}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
+  s += `<text x="${x(61) - 4}" y="${H - 10}" text-anchor="end" font-size="11.5" fill="${fg2}">61 = majority</text>`;
+  let level = STEPS[0].total[bloc], r = 0, bar = 15;
   const rowY = i => top + i * rowH;
   STEPS.forEach((st, i) => {
-    if (st.sub && !STEPS[i - 1].sub){                                            // header row for the four internal effects
-      const yy = rowY(r) + rowH / 2;
-      s += `<text x="0" y="${yy + 4}" font-size="${fs - 1}" font-weight="700" fill="${fg3}" letter-spacing=".03em">LOST TO THE OPPOSITION: −4</text>`;
+    if (st.sub && !STEPS[i - 1].sub){                                            // header row for the three internal effects
+      s += `<text x="0" y="${rowY(r) + rowH / 2 + 4}" font-size="${fs - 1}" font-weight="700" fill="${fg3}" letter-spacing=".03em">${b.group.toUpperCase()}</text>`;
       s += `<line x1="${x(level)}" x2="${x(level)}" y1="${rowY(r)}" y2="${rowY(r + 1)}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
       r++;
     }
     const cy = rowY(r) + rowH / 2, lx = st.sub ? 10 : 0;
     const lines = narrow ? st.label : [st.label.join(" ")];
-    s += `<text x="${lx}" y="${cy - (lines.length - 1) * 7}" dominant-baseline="middle" font-size="${fs}" fill="${st.total != null ? fg : fg2}" font-weight="${st.total != null ? 700 : 400}">` +
+    s += `<text x="${lx}" y="${cy - (lines.length - 1) * 7}" dominant-baseline="middle" font-size="${fs}" fill="${st.total ? fg : fg2}" font-weight="${st.total ? 700 : 400}">` +
          lines.map((t, j) => `<tspan x="${lx}" dy="${j ? 14 : 0}">${t}</tspan>`).join("") + `</text>`;
-    if (st.total != null){
-      s += `<rect x="${x(lo)}" y="${cy - bar / 2}" width="${x(st.total) - x(lo)}" height="${bar}" fill="${tot}"/>`;
-      s += `<text x="${x(st.total) + 6}" y="${cy}" dominant-baseline="middle" font-size="14" font-weight="800" fill="${fg}">${st.total}</text>`;
-      level = st.total;
+    if (st.total){
+      const v = st.total[bloc];
+      s += `<rect x="${x(lo)}" y="${cy - bar / 2}" width="${x(v) - x(lo)}" height="${bar}" fill="${css(b.color)}"/>`;
+      s += `<text x="${x(v) + 6}" y="${cy}" dominant-baseline="middle" font-size="14" font-weight="800" fill="${fg}">${v}</text>`;
+      level = v;
     } else {
-      const to = Math.round((level + st.d) * 10) / 10;
-      s += `<rect x="${x(to)}" y="${cy - bar / 2}" width="${Math.max(x(level) - x(to), 1.5)}" height="${bar}" fill="${loss}"/>`;
-      s += `<text x="${x(level) + 6}" y="${cy}" dominant-baseline="middle" font-size="${fs}" font-weight="700" fill="${fg}">${st.d < 0 ? "−" : "+"}${Math.abs(st.d)}</text>`;
+      const d = st.d[bloc], to = Math.round((level + d) * 10) / 10;
+      if (d === 0) s += `<text x="${x(level) + 6}" y="${cy}" dominant-baseline="middle" font-size="${fs}" fill="${fg3}">0</text>`;
+      else {
+        s += `<rect x="${x(Math.min(level, to))}" y="${cy - bar / 2}" width="${Math.max(Math.abs(x(to) - x(level)), 2)}" height="${bar}" fill="${css(d < 0 ? "--loss" : "--gain")}"/>`;
+        s += `<text x="${x(Math.max(level, to)) + 6}" y="${cy}" dominant-baseline="middle" font-size="${fs}" font-weight="700" fill="${fg}">${fmt(d)}</text>`;
+      }
       level = to;
     }
     if (i < STEPS.length - 1) s += `<line x1="${x(level)}" x2="${x(level)}" y1="${cy + bar / 2}" y2="${cy + rowH - bar / 2}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
     r++;
   });
-  s += `<line x1="${x(61)}" x2="${x(61)}" y1="${top - 4}" y2="${H - 6}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
-  s += `<text x="${x(61) + 4}" y="${H - 10}" font-size="11.5" fill="${fg2}">61 = majority</text>`;
-  s += `</svg>`;
-  host.innerHTML = s;
+  host.innerHTML = s + `</svg>`;
+}
+function tabs(){
+  const el = document.getElementById("tabs");
+  el.innerHTML = Object.entries(BLOCS).map(([k, b]) => `<button role="tab" aria-selected="${k === bloc}" data-k="${k}">${b.name}</button>`).join("");
+  el.querySelectorAll("button").forEach(btn => btn.onclick = () => {
+    bloc = btn.dataset.k; try { history.replaceState(null, "", "#" + HASH[bloc]); } catch (e) {}
+    render();
+  });
 }
 function rows(){
   let html = "", inGroup = false;
-  STEPS.filter(st => st.d != null).forEach(st => {
-    if (st.sub && !inGroup){ html += `<tr class="grp"><td colspan="2">Lost to the opposition (−4)</td></tr>`; inGroup = true; }
-    html += `<tr><td class="n">${st.d < 0 ? "−" : "+"}${Math.abs(st.d)}</td><td><b>${st.row}</b>${st.text}</td></tr>`;
+  STEPS.filter(st => st.d).forEach(st => {
+    if (st.sub && !inGroup){ html += `<tr class="grp"><td colspan="4">Coalition vs. opposition</td></tr>`; inGroup = true; }
+    html += ["c", "o", "a"].map(k => `<td class="n ${k === bloc ? "sel" : "dim"}" style="${k === bloc && st.d[k] ? `color:var(${st.d[k] < 0 ? "--loss" : "--gain"})` : ""}">${st.d[k] ? fmt(st.d[k]) : "0"}</td>`)
+      .join("").replace(/^/, "<tr>") + `<td><b>${st.row}</b>${st.text}</td></tr>`;
   });
   document.getElementById("rows").innerHTML = html;
 }
-draw(); rows();
+function render(){ tabs(); draw(); rows(); }
+render();
+addEventListener("hashchange", () => { const h = location.hash.slice(1); for (const k in HASH) if (HASH[k] === h && k !== bloc){ bloc = k; render(); } });
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(draw, 120); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
 new MutationObserver(draw).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
