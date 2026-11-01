@@ -77,9 +77,9 @@ footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);paddi
   <div class="method">
     <h2>How it was calculated</h2>
     <p><b>Coalition</b> means Likud, Religious Zionism, Shas, UTJ and Otzma Yehudit. Jewish Home and Economic Freedom (2022) are not counted.</p>
-    <p><b>The first two steps are exact recounts.</b> The 2022 votes are counted as if Meretz and Balad had passed the threshold, which gives the coalition 60. The 2026 votes are counted with Arab turnout at its 2022 rate, which gives it 56 instead of 53.</p>
-    <p><b>The last four are estimates.</b> Ballots are secret, so voter movements are estimated by comparing about 4,000 polling places that exist in both elections and finding the movements that best explain the local changes. First-time voters are estimated from population data. The four effects are scaled to add up to the 4 seats.</p>
-    <p><b>Uncertainty.</b> Under different assumptions the estimates range: wasted votes −0.4 to −1.2, turnout −1.7 to −2.2, first-time voters 0 to −0.5, switching −0.6 to −1.5.</p>
+    <p><b>The first two steps are exact recounts.</b> The 2022 votes are counted with Meretz inside Labor and Balad inside Hadash-Ta'al, as they ran in 2026, which gives the coalition 60. The 2026 votes are counted with Arab turnout at its 2022 rate, which gives it 56 instead of 53.</p>
+    <p><b>The last three are estimates.</b> Ballots are secret, so voter movements are estimated by comparing about 4,000 polling places that exist in both elections and finding the movements that best explain the local changes. First-time voters are estimated from population data. The three effects are scaled to add up to the 4 seats.</p>
+    <p><b>Uncertainty.</b> Under different assumptions the estimates range: wasted votes −0.4 to −1.2, turnout gap −1.9 to −2.3, switching −0.6 to −1.5.</p>
   </div>
 </section>
 
@@ -89,16 +89,14 @@ footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);paddi
 const STEPS = [
   {label:["2022","result"], total:64},
   {label:["Meretz & Balad","votes counted"], d:-4, row:"Meretz & Balad votes counted",
-   text:"Both fell just below the threshold in 2022 (150,793 and 138,617 votes). Counting them leaves the coalition with 60."},
+   text:"Both fell just below the threshold in 2022 (150,793 and 138,617 votes). Counted inside the lists they joined in 2026, they leave the coalition with 60."},
   {label:["Arab turnout","52% → 78%"], d:-3, row:"Arab turnout surge",
    text:"Arab lists rose from 13 to 19 seats. The coalition and the opposition each gave up 3."},
   {label:["Votes lost below","the threshold"], d:-0.6, sub:true, row:"Votes lost below the threshold",
    text:"About 80,000 2022 coalition voters chose lists that missed the threshold (Amcha, Noam, the Reservists and others), against about 46,000 opposition voters."},
-  {label:["Turnout of","returning voters"], d:-1.7, sub:true, row:"Turnout of returning voters",
-   text:"Voters who came back after skipping 2022 leaned to the opposition; those who stayed home this time leaned to the coalition."},
-  {label:["First-time","voters"], d:-0.2, sub:true, row:"First-time voters",
-   text:"About 640,000 young people came of age. They split about 55/45, close to the 2022 balance, so they barely moved the result."},
-  {label:["Voters switching","to the opposition"], d:-1.5, sub:true, row:"Voters switching to the opposition",
+  {label:["Turnout gap: coalition","& opposition voters"], d:-1.9, sub:true, row:"Turnout gap: coalition and opposition voters",
+   text:"Voters who came back after skipping 2022 leaned to the opposition, and those who stayed home leaned to the coalition. First-time voters (about 640,000) split close to the 2022 balance and added little."},
+  {label:["Voters switching from","coalition to opposition"], d:-1.5, sub:true, row:"Voters switching from coalition to opposition",
    text:"About 51,000 more voters moved from the coalition to the opposition than the other way."},
   {label:["2026","result"], total:53}
 ];
