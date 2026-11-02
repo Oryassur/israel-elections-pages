@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>המנדטים בכנסת 2022–2026</title>
+<meta name="description" content="מה הזיז את המנדטים בכנסת בין 2022 ל-2026: הקואליציה מ-64 ל-53, האופוזיציה מ-46 ל-48 והרשימות הערביות מ-10 ל-19, שלב אחר שלב.">
+<meta property="og:title" content="מה הזיז את המנדטים בכנסת, 2022 עד 2026">
+<meta property="og:description" content="מה הזיז את המנדטים בכנסת בין 2022 ל-2026: הקואליציה מ-64 ל-53, האופוזיציה מ-46 ל-48 והרשימות הערביות מ-10 ל-19, שלב אחר שלב.">
+<meta property="og:type" content="article">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+.meta a{color:inherit}
+
+:root{
+  --bg:#ffffff; --fg:#111111; --fg-2:#4f4f4f; --fg-3:#8a8a8a; --line:#e2e2e2;
+  --total:#24416b; --opp:#b8621b; --arab:#5d4fa3; --loss:#c4402f; --gain:#2f7d5b; --majority:#111111; --tab:#f0f0f0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141414; --fg:#eeeeee; --fg-2:#bdbdbd; --fg-3:#7d7d7d; --line:#2e2e2e;
+  --total:#7ea6dc; --opp:#e39a55; --arab:#a99be6; --loss:#e0705f; --gain:#5fbf93; --majority:#eeeeee; --tab:#242424; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141414; --fg:#eeeeee; --fg-2:#bdbdbd; --fg-3:#7d7d7d; --line:#2e2e2e;
+  --total:#7ea6dc; --opp:#e39a55; --arab:#a99be6; --loss:#e0705f; --gain:#5fbf93; --majority:#eeeeee; --tab:#242424; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  padding-block:28px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:900px;margin:0 auto;display:grid;gap:18px}
+main>*{min-width:0}
+header{border-bottom:2px solid var(--fg);padding-bottom:14px}
+h1{font-size:30px;line-height:1.15;margin:0 0 8px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.dek{font-size:17px;color:var(--fg-2);margin:0;max-width:62ch}
+.meta{font-size:13px;color:var(--fg-3);margin:10px 0 0}
+.keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.key{padding-block:2px 14px;padding-inline:0 16px}
+.key + .key{border-inline-start:1px solid var(--line);padding-inline-start:16px}
+.key b{display:block;font-size:30px;font-weight:800;color:var(--loss);font-variant-numeric:tabular-nums;line-height:1.2}
+.key span{display:block;font-weight:600}
+.key small{display:block;color:var(--fg-2);font-size:13.5px}
+.scroll{overflow-x:auto}
+#wf svg{display:block;width:100%;height:auto}
+.cols{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:28px;border-top:1px solid var(--line);padding-top:16px}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 8px;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:14px}
+td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{text-align:end;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;width:3em;padding-inline-end:10px}
+td b{display:block}
+td.i b{padding-left:0}
+tr.grp td{padding-top:12px;font-size:12px;color:var(--fg-3);font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-bottom:none}
+.method p{margin:0 0 9px;font-size:13.5px;color:var(--fg-2)}
+.method b{color:var(--fg)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:-6px}
+.tabtitle{font-size:22px;font-weight:800;margin:0;letter-spacing:-.01em;text-transform:none;color:var(--fg)}
+.key b.pos{color:var(--gain)}.key b.zero{color:var(--fg-3)}
+.tabs button{font:600 14px/1.2 inherit;font-family:inherit;color:var(--fg-2);background:var(--tab);border:0;border-radius:4px;padding:7px 14px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+td.n.sel{color:var(--fg)}td.n.dim{color:var(--fg-3);font-weight:500}
+th.n{text-align:end;padding-inline-end:12px;font-size:12px;color:var(--fg-3);font-weight:600}
+footer{font-size:12.5px;color:var(--fg-3);border-top:1px solid var(--line);padding-top:10px}
+@media (max-width:700px){.tabs button{flex:1}.cols{grid-template-columns:1fr}.key{padding-inline-end:8px}.key + .key{padding-inline-start:10px}.key b{font-size:24px}.key span{font-size:13.5px;line-height:1.3}.key small{display:none}}
+@page{size:A4 portrait;margin:12mm}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>מה הזיז את המנדטים בכנסת, 2022 עד 2026</h1>
+  <p class="dek">שינויי המנדטים לפי גוש, שלב אחר שלב.</p>
+  <p class="meta">הבחירות לכנסת, 1 בנובמבר 2022 ו-27 באוקטובר 2026 · ספירה סופית נכון ל-30 באוקטובר 2026 · <a href="../" lang="en">English</a></p>
+</header>
+
+<div class="tabs" role="tablist" aria-label="גוש" id="tabs"></div>
+<h2 class="tabtitle" id="tabtitle"></h2>
+<section class="keys" aria-label="סיכום" id="keys"></section>
+<section aria-label="תרשים מפל מנדטים"><div id="wf"></div></section>
+
+<section class="cols">
+  <div>
+    <h2>שלב אחר שלב</h2>
+    <table><thead><tr><th class="n">קואל׳</th><th class="n">אופ׳</th><th class="n">ערב׳</th><th></th></tr></thead><tbody id="rows"></tbody></table>
+  </div>
+  <div class="method">
+    <h2>איך זה חושב</h2>
+    <p><b>גושים.</b> קואליציה: הליכוד, הציונות הדתית, ש"ס, יהדות התורה, עוצמה יהודית (הבית היהודי וחופש כלכלי ב-2022 אינם נספרים). אופוזיציה: יש עתיד, המחנה הממלכתי, ישראל ביתנו, העבודה ומרצ ב-2022; ישר!, ביחד, הדמוקרטים וישראל ביתנו ב-2026. רשימות ערביות: רע"מ, חד"ש-תע"ל, בל"ד, הרשימה המשותפת.</p>
+    <p><b>שני השלבים הראשונים הם ספירות חוזרות מדויקות.</b> קולות 2022 נספרים כשמרצ בתוך העבודה ובל"ד בתוך חד"ש-תע"ל, כפי שרצו ב-2026, ואז לקואליציה 60 מנדטים. קולות 2026 נספרים כששיעור ההצבעה במגזר הערבי ברמת 2022, ואז לקואליציה 56 במקום 53.</p>
+    <p><b>שלושת השלבים האחרונים הם הערכות.</b> ההצבעה חשאית, ולכן תנועות המצביעים מוערכות מהשוואה של כ-4,000 אזורי קלפי שקיימים בשתי מערכות הבחירות, ומציאת התנועות שמסבירות הכי טוב את השינויים המקומיים. מספר המצביעים החדשים מוערך מנתוני אוכלוסייה. שלוש ההשפעות מותאמות כך שיסתכמו ב-4 המנדטים. במנדטים שלמים ה-4 עוברים מהקואליציה לאופוזיציה, ולכן אצל האופוזיציה אלה אותם מספרים בסימן הפוך, ואצל הרשימות הערביות אפס.</p>
+    <p><b>אי-ודאות.</b> בהנחות שונות ההערכות נעות בין: קולות שאבדו ⁦−0.4⁩ עד ⁦−1.2⁩, פער בשיעור ההצבעה ⁦−1.9⁩ עד ⁦−2.3⁩, מעבר מצביעים ⁦−0.6⁩ עד ⁦−1.5⁩.</p>
+  </div>
+</section>
+
+<footer>מקור: ועדת הבחירות המרכזית, תוצאות לפי קלפי (2022, 2026). המנדטים חולקו לפי אחוז חסימה של 3.25% והסכמי עודפים. תוצאות 2026 יפורסמו רשמית עד 4 בנובמבר 2026 ועשויות עוד להשתנות מעט.</footer>
+</main>
+<script>
+// seats per bloc at each step: c = coalition, o = opposition, a = Arab lists
+const STEPS = [
+  {label:["תוצאות 2022"], total:{c:64, o:46, a:10}},
+  {label:["ספירת קולות מרצ ובל\"ד"], d:{c:-4, o:1, a:3}, row:"ספירת קולות מרצ ובל\"ד",
+   text:"שתיהן נפלו מעט מתחת לאחוז החסימה ב-2022 (150,793 ו-138,617 קולות). אילו נספרו בתוך הרשימות שאליהן הצטרפו ב-2026, הגושים היו 60, 47 ו-13."},
+  {label:["הצבעה ערבית: 52% ← 78%"], d:{c:-3, o:-3, a:6}, row:"זינוק בהצבעה הערבית",
+   text:"הרשימות הערביות עלו מ-13 ל-19 מנדטים. הקואליציה והאופוזיציה איבדו 3 כל אחת."},
+  {label:["קולות שאבדו מתחת לאחוז החסימה"], d:{c:-0.6, o:0.6, a:0}, sub:true, row:"קולות שאבדו מתחת לאחוז החסימה",
+   text:"כ-80,000 מצביעי קואליציה מ-2022 בחרו ברשימות שלא עברו את אחוז החסימה (עמך ישראל, נעם, המילואימניקים ואחרות), לעומת כ-46,000 מצביעי אופוזיציה."},
+  {label:["פער בשיעור ההצבעה: מצביעי קואליציה ואופוזיציה"], d:{c:-1.9, o:1.9, a:0}, sub:true, row:"פער בשיעור ההצבעה: מצביעי קואליציה ואופוזיציה",
+   text:"מי שחזרו להצביע אחרי שלא הצביעו ב-2022 נטו לאופוזיציה, ומי שנשארו בבית נטו לקואליציה. המצביעים החדשים (כ-640,000) התחלקו קרוב לאיזון של 2022 והשפיעו מעט."},
+  {label:["מעבר מצביעים מהקואליציה לאופוזיציה"], d:{c:-1.5, o:1.5, a:0}, sub:true, row:"מעבר מצביעים מהקואליציה לאופוזיציה",
+   text:"כ-51,000 מצביעים יותר עברו מהקואליציה לאופוזיציה מאשר בכיוון ההפוך."},
+  {label:["תוצאות 2026"], total:{c:53, o:48, a:19}}
+];
+const BLOCS = {
+  c:{name:"קואליציה", color:"--total", group:"הפסד לאופוזיציה: ⁦−4⁩", title:"קואליציה: 64 ← 53",
+     keys:[[-4, "הקולות שהתבזבזו ב-2022 נספרים", "מרצ ובל\"ד נפלו מעט מתחת לאחוז החסימה ב-2022"],
+           [-3, "זינוק בהצבעה הערבית", "שיעור ההצבעה במגזר הערבי עלה מ-52% ל-78%"],
+           [-4, "הפסד לאופוזיציה", "פער בשיעור ההצבעה, מעבר מצביעים וקולות שאבדו מתחת לאחוז החסימה"]]},
+  o:{name:"אופוזיציה", color:"--opp", group:"רווח מהקואליציה: ⁦+4⁩", title:"אופוזיציה: 46 ← 48",
+     keys:[[1, "קולות מרצ נספרים", "מרצ נפלה מעט מתחת לאחוז החסימה ב-2022"],
+           [-3, "זינוק בהצבעה הערבית", "שיעור ההצבעה במגזר הערבי עלה מ-52% ל-78%"],
+           [4, "רווח מהקואליציה", "פער בשיעור ההצבעה, מעבר מצביעים וקולות שאבדו מתחת לאחוז החסימה"]]},
+  a:{name:"רשימות ערביות", color:"--arab", group:"קואליציה מול אופוזיציה: 0", title:"רשימות ערביות: 10 ← 19",
+     keys:[[3, "קולות בל\"ד נספרים", "בל\"ד נפלה מעט מתחת לאחוז החסימה ב-2022"],
+           [6, "זינוק בהצבעה הערבית", "שיעור ההצבעה במגזר הערבי עלה מ-52% ל-78%"],
+           [0, "קואליציה מול אופוזיציה", "ללא השפעה על הרשימות הערביות"]]}};
+const UI = {majority:"61 = רוב", vs:"קואליציה מול אופוזיציה", aria:"– מנדטים, 2022 עד 2026"};
+// end of translatable data
+const HASH = {c:"coalition", o:"opposition", a:"arab-lists"};
+let bloc = "c";
+try { const h = location.hash.slice(1); for (const k in HASH) if (HASH[k] === h) bloc = k; } catch (e) {}
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const RTL = document.documentElement.dir === "rtl";
+const fmt = v => { const t = (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v); return RTL ? "\u2066" + t + "\u2069" : t; };   // keep signs on the left in Hebrew
+function draw(){
+  // one row per step on a fixed 0-70 seat axis shared by all tabs, so the grid never moves when switching;
+  // in Hebrew (dir=rtl) the chart is mirrored: labels on the right, seats growing to the left
+  const host = document.getElementById("wf"), W = Math.max(host.clientWidth, 300), b = BLOCS[bloc];
+  const narrow = W < 560, labelW = narrow ? 0 : 210, right = narrow ? 34 : 44, top = 26, rowH = narrow ? 48 : 40, lo = 0, hi = 70;
+  const H = top + (STEPS.length + 1) * rowH + 26, gridEnd = H - 20;          // room under the rows for the majority label
+  const xl = v => labelW + (v - lo) / (hi - lo) * (W - labelW - right);
+  const x = v => RTL ? W - xl(v) : xl(v);                                     // seat value -> pixel
+  const px = p => RTL ? W - p : p;                                            // left-to-right pixel -> pixel
+  const after = (v, off = 6) => `x="${x(v) + (RTL ? -off : off)}" text-anchor="${RTL ? "end" : "start"}"`;   // text just past a bar end
+  const box = (a, c) => `x="${Math.min(x(a), x(c))}" width="${Math.max(Math.abs(x(c) - x(a)), 2)}"`;
+  const fg = css("--fg"), fg2 = css("--fg-2"), fg3 = css("--fg-3"), line = css("--line");
+  const fs = narrow ? 12 : 13, start = RTL ? "end" : "start";
+  const labelAt = `${RTL ? 'direction="rtl" ' : ""}text-anchor="start"`;     // Hebrew labels read right to left from the right edge
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="${b.name} ${UI.aria}" style="direction:ltr">`;
+  for (let v = lo; v <= hi; v += 10){
+    s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 4}" y2="${gridEnd}" stroke="${line}"/>`;
+    if (!narrow || v % 20 === 0) s += `<text x="${x(v)}" y="${top - 10}" text-anchor="${v === lo ? start : "middle"}" font-size="11.5" fill="${fg3}">${v}</text>`;
+  }
+  s += `<line x1="${x(61)}" x2="${x(61)}" y1="${top - 4}" y2="${gridEnd}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
+  s += `<text x="${x(61)}" y="${H - 4}" text-anchor="middle" font-size="11.5" fill="${fg2}">${UI.majority}</text>`;
+  let level = STEPS[0].total[bloc], r = 0, bar = 15;
+  const rowY = i => top + i * rowH;
+  STEPS.forEach((st, i) => {
+    if (st.sub && !STEPS[i - 1].sub){                                            // header row for the three internal effects
+      s += `<text x="${px(0)}" ${labelAt} y="${rowY(r) + (narrow ? 30 : rowH / 2 + 4)}" font-size="${fs - 1}" font-weight="700" fill="${fg3}" letter-spacing=".03em">${b.group.toUpperCase()}</text>`;
+      s += `<line x1="${x(level)}" x2="${x(level)}" y1="${rowY(r)}" y2="${rowY(r + 1) + (narrow ? 32 : rowH / 2) - bar / 2}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
+      r++;
+    }
+    // phones: the label sits above its bar so the bars get the full width
+    const cy = narrow ? rowY(r) + 32 : rowY(r) + rowH / 2, lx = st.sub ? (narrow ? 0 : 10) : 0;
+    const ly = narrow ? rowY(r) + 12 : cy;
+    s += `<text x="${px(lx)}" ${labelAt} y="${ly}" dominant-baseline="middle" font-size="${fs}" fill="${st.total ? fg : fg2}" font-weight="${st.total ? 700 : 400}">${st.label.join(" ")}</text>`;
+    if (st.total){
+      const v = st.total[bloc];
+      s += `<rect ${box(lo, v)} y="${cy - bar / 2}" height="${bar}" fill="${css(b.color)}"/>`;
+      s += `<text ${after(v)} y="${cy}" dominant-baseline="middle" font-size="14" font-weight="800" fill="${fg}">${v}</text>`;
+      level = v;
+    } else {
+      const d = st.d[bloc], to = Math.round((level + d) * 10) / 10;
+      if (d === 0) s += `<text ${after(level)} y="${cy}" dominant-baseline="middle" font-size="${fs}" fill="${fg3}">0</text>`;
+      else {
+        s += `<rect ${box(level, to)} y="${cy - bar / 2}" height="${bar}" fill="${css(d < 0 ? "--loss" : "--gain")}"/>`;
+        s += `<text ${after(Math.max(level, to))} y="${cy}" dominant-baseline="middle" font-size="${fs}" font-weight="700" fill="${fg}">${fmt(d)}</text>`;
+      }
+      level = to;
+    }
+    if (i < STEPS.length - 1) s += `<line x1="${x(level)}" x2="${x(level)}" y1="${cy + bar / 2}" y2="${cy + rowH - bar / 2}" stroke="${fg3}" stroke-dasharray="2 2"/>`;
+    r++;
+  });
+  host.innerHTML = s + `</svg>`;
+}
+function tabs(){
+  const el = document.getElementById("tabs");
+  el.innerHTML = Object.entries(BLOCS).map(([k, b]) => `<button role="tab" aria-selected="${k === bloc}" data-k="${k}">${b.name}</button>`).join("");
+  el.querySelectorAll("button").forEach(btn => btn.onclick = () => {
+    bloc = btn.dataset.k; try { history.replaceState(null, "", "#" + HASH[bloc]); } catch (e) {}
+    render();
+  });
+}
+function rows(){
+  let html = "", inGroup = false;
+  STEPS.filter(st => st.d).forEach(st => {
+    if (st.sub && !inGroup){ html += `<tr class="grp"><td colspan="4">${UI.vs}</td></tr>`; inGroup = true; }
+    html += ["c", "o", "a"].map(k => `<td class="n ${k === bloc ? "sel" : "dim"}" style="${k === bloc && st.d[k] ? `color:var(${st.d[k] < 0 ? "--loss" : "--gain"})` : ""}">${st.d[k] ? fmt(st.d[k]) : "0"}</td>`)
+      .join("").replace(/^/, "<tr>") + `<td><b>${st.row}</b>${st.text}</td></tr>`;
+  });
+  document.getElementById("rows").innerHTML = html;
+}
+function head(){
+  const b = BLOCS[bloc];
+  document.getElementById("tabtitle").textContent = b.title;
+  document.getElementById("keys").innerHTML = b.keys.map(([v, t, sm]) =>
+    `<div class="key"><b class="${v > 0 ? "pos" : v === 0 ? "zero" : ""}">${fmt(v) || "0"}</b><span>${t}</span><small>${sm}</small></div>`).join("");
+}
+function render(){ tabs(); head(); draw(); rows(); }
+render();
+addEventListener("hashchange", () => { const h = location.hash.slice(1); for (const k in HASH) if (HASH[k] === h && k !== bloc){ bloc = k; render(); } });
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(draw, 120); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+new MutationObserver(draw).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+</script>
+</body>
+</html>
