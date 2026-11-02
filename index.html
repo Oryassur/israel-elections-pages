@@ -129,22 +129,23 @@ const RTL = document.documentElement.dir === "rtl";
 const fmt = v => { const t = (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v); return RTL ? "\u2066" + t + "\u2069" : t; };   // keep signs on the left in Hebrew
 function draw(){
   // one row per step on a fixed 0-70 seat axis shared by all tabs, so the grid never moves when switching;
-  // in Hebrew (dir=rtl) the chart is mirrored: labels on the right, seats growing to the left
+  // the axis always runs left to right; in Hebrew (dir=rtl) only the label column moves to the right
   const host = document.getElementById("wf"), W = Math.max(host.clientWidth, 300), b = BLOCS[bloc];
   const narrow = W < 560, labelW = narrow ? 0 : 210, right = narrow ? 34 : 44, top = 26, rowH = narrow ? 48 : 40, lo = 0, hi = 70;
   const H = top + (STEPS.length + 1) * rowH + 26, gridEnd = H - 20;          // room under the rows for the majority label
-  const xl = v => labelW + (v - lo) / (hi - lo) * (W - labelW - right);
-  const x = v => RTL ? W - xl(v) : xl(v);                                     // seat value -> pixel
-  const px = p => RTL ? W - p : p;                                            // left-to-right pixel -> pixel
-  const after = (v, off = 6) => `x="${x(v) + (RTL ? -off : off)}" text-anchor="${RTL ? "end" : "start"}"`;   // text just past a bar end
+  const plotL = RTL ? 4 : labelW, plotR = RTL ? W - labelW - right : W - right;
+  const x = v => plotL + (v - lo) / (hi - lo) * (plotR - plotL);              // seat value -> pixel, always left to right
+  const px = p => RTL ? W - p : p;                                            // label position from the reading edge
+  const after = (v, off = 6) => `x="${x(v) + off}" text-anchor="start"`;     // text just past a bar end
   const box = (a, c) => `x="${Math.min(x(a), x(c))}" width="${Math.max(Math.abs(x(c) - x(a)), 2)}"`;
   const fg = css("--fg"), fg2 = css("--fg-2"), fg3 = css("--fg-3"), line = css("--line");
-  const fs = narrow ? 12 : 13, start = RTL ? "end" : "start";
-  const labelAt = `${RTL ? 'direction="rtl" ' : ""}text-anchor="start"`;     // Hebrew labels read right to left from the right edge
+  const fs = narrow ? 12 : 13;
+  // Hebrew labels read right to left from the right edge; on phones a background outline keeps them clear of grid lines
+  const labelAt = `${RTL ? 'direction="rtl" ' : ""}text-anchor="start"` + (narrow ? ` stroke="${css("--bg")}" stroke-width="4" stroke-linejoin="round" paint-order="stroke"` : "");
   let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-label="${b.name} ${UI.aria}" style="direction:ltr">`;
   for (let v = lo; v <= hi; v += 10){
     s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 4}" y2="${gridEnd}" stroke="${line}"/>`;
-    if (!narrow || v % 20 === 0) s += `<text x="${x(v)}" y="${top - 10}" text-anchor="${v === lo ? start : "middle"}" font-size="11.5" fill="${fg3}">${v}</text>`;
+    if (!narrow || v % 20 === 0) s += `<text x="${x(v)}" y="${top - 10}" text-anchor="${v === lo ? "start" : "middle"}" font-size="11.5" fill="${fg3}">${v}</text>`;
   }
   s += `<line x1="${x(61)}" x2="${x(61)}" y1="${top - 4}" y2="${gridEnd}" stroke="${css("--majority")}" stroke-dasharray="5 4"/>`;
   s += `<text x="${x(61)}" y="${H - 4}" text-anchor="middle" font-size="11.5" fill="${fg2}">${UI.majority}</text>`;
@@ -183,7 +184,7 @@ function tabs(){
   const el = document.getElementById("tabs");
   el.innerHTML = Object.entries(BLOCS).map(([k, b]) => `<button role="tab" aria-selected="${k === bloc}" data-k="${k}">${b.name}</button>`).join("");
   el.querySelectorAll("button").forEach(btn => btn.onclick = () => {
-    bloc = btn.dataset.k; try { history.replaceState(null, "", "#" + HASH[bloc]); } catch (e) {}
+    bloc = btn.dataset.k;
     render();
   });
 }
